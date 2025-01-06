@@ -21,14 +21,14 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
+            //JWT tokens should be short-lived and not remembered for security reasons - users should re-login after token expiration.
         });
 
         Schema::create('company_users_password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();
-            $table->string('token');
+            $table->text('token');
             $table->timestamp('created_at')->nullable();
         });
     }

@@ -16,12 +16,13 @@ Route::middleware(['auth:api'])->prefix('auth')->group(function () {;
 Route::middleware(['auth:api'])->prefix('company')->group(function () {
     Route::get('/all', [ComApiController::class, 'index'])->name('api.company.list');
     //employee/manager
-    Route::get('/employee', [ComUsersApiController::class, 'index'])->name('api.employee.list');
+    Route::get('/employee', [ComUsersApiController::class, 'index'])->name('api.employee.index');
     Route::get('/employee/{id}', [ComUsersApiController::class, 'show'])->name('api.employee.view');
-    Route::get('/manager', [ComUsersApiController::class, 'edit'])->name('api.manager.edit');
-    Route::patch('/manager', [ComUsersApiController::class, 'update'])->name('api.manager.update');
-    Route::delete('/manager', [ComUsersApiController::class, 'destroy'])->name('api.manager.destroy');
-    Route::get('/employee', [ComUsersApiController::class, 'edit'])->name('api.employee.edit');
-    Route::patch('/employee', [ComUsersApiController::class, 'update'])->name('api.employee.update');
-    Route::delete('/employee', [ComUsersApiController::class, 'destroy'])->name('api.employee.destroy');
+    Route::post('/employee', [ComUsersApiController::class, 'store'])->name('api.employee.store');
+    Route::patch('/employee/{id}', [ComUsersApiController::class, 'update'])->name('api.employee.update');
+    Route::delete('/employee/{id}', [ComUsersApiController::class, 'destroy'])->name('api.employee.destroy');
+    Route::patch('/employee/reactivate/{id}', [ComUsersApiController::class, 'reactivate'])->name('api.employee.reactivate');
+    // Route::get('/manager', [ComUsersApiController::class, 'edit'])->name('api.manager.edit');
+    // Route::patch('/manager', [ComUsersApiController::class, 'update'])->name('api.manager.update');
+    // Route::delete('/manager', [ComUsersApiController::class, 'destroy'])->name('api.manager.destroy');
 });
