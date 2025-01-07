@@ -4,7 +4,6 @@ use App\Http\Middleware\JwtMiddleware;
 use App\Http\Controllers\Api\ComApiController;
 use App\Http\Controllers\Api\ComUsersApiController;
 
-Route::post('company_register', [JWTAuthController::class, 'register'])->name('jwt.register_company')->middleware('auth:web');
 Route::post('company_login', [JWTAuthController::class, 'login'])->name('jwt.login_company');
 
 Route::middleware(['auth:api'])->prefix('auth')->group(function () {;
@@ -14,7 +13,10 @@ Route::middleware(['auth:api'])->prefix('auth')->group(function () {;
 });
 
 Route::middleware(['auth:api'])->prefix('company')->group(function () {
+    Route::post('company_register', [ComApiController::class, 'store'])->name('api.company.register_company');
     Route::get('/all', [ComApiController::class, 'index'])->name('api.company.list');
+    Route::get('/id/{id}', [ComApiController::class, 'show'])->name('api.company.view');
+    Route::get('/id/{id}/employee', [ComApiController::class, 'show_employee'])->name('api.company.view_employee');
     //employee/manager
     Route::get('/employee', [ComUsersApiController::class, 'index'])->name('api.employee.index');
     Route::get('/employee/{id}', [ComUsersApiController::class, 'show'])->name('api.employee.view');

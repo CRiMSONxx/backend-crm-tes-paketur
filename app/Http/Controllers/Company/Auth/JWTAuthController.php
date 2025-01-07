@@ -17,6 +17,9 @@ class JWTAuthController extends \App\Http\Controllers\Controller
     // return json
     public function register(Request $request)
     {
+        if (! auth()->user()->is_super) {
+            return response()->json(['error' => 'Forbidden'], 403);
+        }
         $validator = Validator::make($request->all(), [
             'cname' => 'required|string|max:255',
             'cemail' => 'required|string|email|unique:company,cemail',

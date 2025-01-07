@@ -34,6 +34,7 @@ Route::middleware('auth:web')->prefix('controlpanel')->group(function () {
 
 //company start
 Route::get('/company/login', [ManagerController::class, 'login'])->name('company.login')->middleware('guest');
+Route::post('company_register', [\App\Http\Controllers\Company\Auth\JWTAuthController::class, 'register'])->name('jwt.register_company')->middleware('auth:web'); // must from controlpanel
 Route::middleware(['auth:api'])->prefix('company')->group(function () {
     Route::get('/manager', [ManagerController::class, 'edit'])->name('manager.edit');
     Route::patch('/manager', [ManagerController::class, 'update'])->name('manager.update');

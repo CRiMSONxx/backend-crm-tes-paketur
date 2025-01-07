@@ -48,7 +48,6 @@ class CompanyUsersTableSeeder extends Seeder
         foreach ($managers as &$manager) {
             $manager['is_manager'] = true;
             $manager['password'] = Hash::make('password'); // 'password' default password
-            $manager['remember_token'] = Str::random(10);
             $manager['created_at'] = Carbon::now();
             $manager['updated_at'] = Carbon::now();
         }

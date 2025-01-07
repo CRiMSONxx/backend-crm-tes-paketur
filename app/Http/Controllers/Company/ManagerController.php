@@ -31,45 +31,6 @@ class ManagerController extends \App\Http\Controllers\Controller
         return Inertia::render('Company/Auth/Login');
     }
     /**
-     * save
-     */
-    // public function store(Request $request)
-    // {
-    //     $request->validate([
-    //         'cname' => 'required|string|max:255',
-    //         'cemail' => 'required|string|email|unique:company,cemail',
-    //         'name' => 'required|string|max:255', 
-    //         'phone' => 'required|string|unique:company_users,phone_number',
-    //         'email' => 'required|string|email|unique:company_users,email',
-    //         'password' => 'required|string|min:8|confirmed',
-    //     ]);
-
-    //     DB::transaction(function () use ($request) {
-    //         $company = DB::table('company')->insertGetId([
-    //             'cname' => $request->cname,
-    //             'cphone_number' => $request->phone,
-    //             'cemail' => $request->cemail,
-    //             'created_at' => now(),
-    //             'updated_at' => now()
-    //         ]);
-
-    //         $company_users = DB::table('company_users')->insert([
-    //             'cid' => $company,
-    //             'is_manager' => true,
-    //             'name' => $request->name,
-    //             'phone_number' => $request->phone,
-    //             'email' => $request->email,
-    //             'password' => $request->password, // already hashed by JWT
-    //             'created_at' => now(),
-    //             'updated_at' => now()
-    //         ]);
-    //     });
-
-    //     $token = JWTAuth::fromUser($company_users);
-
-    //     return redirect()->route('company.login');
-    // }
-    /**
      * Display the user's manager form.
      */
     public function edit(Request $request): Response
